@@ -12,8 +12,6 @@ services:
     restart: always
     ports:
       - "7880:80"
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
     networks:
       - intogis
 
