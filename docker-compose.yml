@@ -33,6 +33,25 @@ services:
     networks:
       - intogis
 
+  # 3. GeoServer (Tomcat)
+  geoserver-was:
+    build:
+      context: ./geoserver
+      dockerfile: Dockerfile
+      args:
+        - ADMIN_USER=${GEOSERVER_ADMIN_USER}
+        - ADMIN_PW=${GEOSERVER_ADMIN_PASSWORD}
+    container_name: geoserver
+    volumes:
+      - "D:/workspace/02_work/02_greenblue/02_iho/91_volume/data:/opt/geoserver_data"
+    environment:
+      - TZ=${TZ}
+      - GEOSERVER_ADMIN_USER=${GEOSERVER_ADMIN_USER}
+      - GEOSERVER_ADMIN_PASSWORD=${GEOSERVER_ADMIN_PASSWORD}
+    restart: always
+    networks:
+      - intogis
+
 # 컨테이너 간 통신을 위한 네트워크 정의
 networks:
   intogis:
